@@ -1,21 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GunplaWinForm {
-    class Mechanic {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string model { get; set; }
-        public string manufacturer { get; set; }
-        public string armor { get; set; }
-        public float height { get; set; }
-        public float weight { get; set; }
-    }
-    class GunplaRepository {
+     class GunplaRepository {
         MySqlConnection dbc = null;
 
         public string Connect() {
@@ -33,18 +25,15 @@ namespace GunplaWinForm {
             dbc.Close();
         }
 
-        public List<Mechanic> SelectMechanic() {
+        public DataSet Mechanic() {
+            MySqlDataAdapter adapter;
             string query = "SELECT * FROM mechanic";
-            MySqlCommand cmd = new MySqlCommand(query, dbc);
-            MySqlDataReader rdr = cmd.ExecuteReader();
+            adapter = new MySqlDataAdapter(query, dbc);
 
-            while (rdr.Read()) {
-                Console.WriteLine(rdr[0] + " -- " + rdr[1]);
-            }
-            rdr.Close();
+            DataSet data = new DataSet();
+            adapter.Fill(data, "mechanic");
+
+            return data;
         }
-
-
     }
-
 }
