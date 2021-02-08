@@ -11,7 +11,10 @@ namespace GunplaWinForm {
         MySqlConnection dbc = null;
 
         public string Connect() {
-            string con = "server=52.79.110.60;user=root;database=gunpladb;port=52804;password=mysql1234";
+            if (dbc != null)
+                dbc.Close();
+
+            string con = "server=13.209.64.228;user=root;database=gunpladb;port=50513;password=mysql1234;charset='utf8'";
             dbc = new MySqlConnection(con);
             try {
                 dbc.Open();
@@ -26,14 +29,37 @@ namespace GunplaWinForm {
         }
 
         public DataSet Mechanic() {
-            MySqlDataAdapter adapter;
+            if (dbc.State != ConnectionState.Open)
+                return null;
+
             string query = "SELECT * FROM mechanic";
-            adapter = new MySqlDataAdapter(query, dbc);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbc);
 
             DataSet data = new DataSet();
             adapter.Fill(data, "mechanic");
 
             return data;
+        }
+
+        public string Insert(string name, string model, string manufacturer, string armor, double height, double weight) {
+            try {
+                string query = @"
+                    INSERT INTO mechanic (id, name, model, manufacturer, armor, height, weight) VALUES
+                    (null, @name, @model, @manufacturer, @armor, @height, @weight)
+                ";
+                MySqlCommand cmd = new MySqlCommand(query, dbc);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@model", model);
+                cmd.Parameters.AddWithValue("@manufacturer", manufacturer);
+                cmd.Parameters.AddWithValue("@armor", armor);
+                cmd.Parameters.AddWithValue("@height", height);
+                cmd.Parameters.AddWithValue("@weight", weight);
+                cmd.ExecuteNonQuery();
+                return null;
+            }
+            catch (Exception ex) {
+                return ex.ToString();
+            }
         }
     }
 }
