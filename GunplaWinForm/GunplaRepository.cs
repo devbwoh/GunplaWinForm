@@ -33,14 +33,18 @@ namespace GunplaWinForm {
             dbc.Close();
         }
 
-        public MySqlDataReader SelectMechanic() {
+        public List<Mechanic> SelectMechanic() {
             string query = "SELECT * FROM mechanic";
             MySqlCommand cmd = new MySqlCommand(query, dbc);
-            return cmd.ExecuteReader();
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read()) {
+                Console.WriteLine(rdr[0] + " -- " + rdr[1]);
+            }
+            rdr.Close();
         }
-        public void CloseMechanic(MySqlDataReader res) {
-            res.Close();
-        }
+
+
     }
 
 }

@@ -22,11 +22,12 @@ namespace GunplaWinForm {
 
             if (error != null)
                 MessageBox.Show(error);
-            //else
-            //    MessageBox.Show("MySQL 접속 성공");
+            else
+                MessageBox.Show("MySQL 접속 성공");
 
             MySqlDataReader res = db.SelectMechanic();
-
+            ListViewItem item = new ListViewItem("0");
+            item.SubItems.Add("테스트");
             db.CloseMechanic(res);
         }
     }
