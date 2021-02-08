@@ -6,7 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GunplaWinForm {
- 
+    class Mechanic {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string model { get; set; }
+        public string manufacturer { get; set; }
+        public string armor { get; set; }
+        public float height { get; set; }
+        public float weight { get; set; }
+    }
     class GunplaRepository {
         MySqlConnection dbc = null;
 
