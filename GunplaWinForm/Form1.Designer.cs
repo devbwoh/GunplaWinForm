@@ -29,9 +29,9 @@ namespace GunplaWinForm {
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(364, 202);
+            this.button1.Location = new System.Drawing.Point(12, 378);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(191, 60);
             this.button1.TabIndex = 0;
             this.button1.Text = "데이터베이스 접속";
             this.button1.UseVisualStyleBackColor = true;

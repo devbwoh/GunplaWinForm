@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,9 @@ namespace GunplaWinForm {
             //else
             //    MessageBox.Show("MySQL 접속 성공");
 
-            db.SelectMechanic();
+            MySqlDataReader res = db.SelectMechanic();
+
+            db.CloseMechanic(res);
         }
     }
 }
