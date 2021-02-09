@@ -1,4 +1,4 @@
-# GunplaWinForm을 사용한 데이터베이스 예제 프로그래밍
+# Visual C# # WinForm을 사용한 데이터베이스 예제 프로그래밍
 
 * CoLab
 > https://colab.research.google.com/drive/1JvVDvP3wzS5u-aRPucBr7EUP6Fi3hRkR
